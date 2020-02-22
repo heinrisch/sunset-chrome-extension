@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EyeChill</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+
+        body {
+            padding: 2rem;
+        }
+
+        #color-preview {
+            width: 30px;
+            height: 30px;
+            margin: 10px;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .line {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .filler {
+            flex-grow: 1;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="col-xs-1"><h3 class="text-nowrap">EyeChill Chrome Extension</h3></div>
+    <label id="temperature-range-label" for="temperature-range">Overlay color temperature (K)</label>
+    <div class="line">
+        <input type="range" class="form-control-range" min="1000" max="5500" step="250" id="temperature-range">
+        <div class="col-xs-1" id="color-preview"></div>
+    </div>
+
+    <div class="line">
+        <button id="disable" class="btn btn-danger">Disable</button>
+        <div class="filler"></div>
+        <button id="save-and-enable" class="btn btn-success">Save & Enable</button>
+    </div>
+
+    <div id="status"></div>
+</div>
+
+<script src="lib/chroma.js"></script>
+<script src="options.js"></script>
+</body>
+</html>
