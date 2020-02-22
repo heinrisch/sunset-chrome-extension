@@ -20,7 +20,7 @@ const handleAllElements = () => {
     }
 };
 
-const setAttr = 'funkedup-123';
+const setAttr = 'sunset-edited-item';
 const handleElement = (e) => {
     try {
         if (e.nodeType === 3 || e.nodeType === 8) return;
@@ -28,7 +28,9 @@ const handleElement = (e) => {
             if (e.tagName.toLowerCase() === 'body') {
                 const shadowDiv = document.createElement('div');
                 shadowDiv.classList.add('other-filter');
-                shadowDiv.style.backgroundColor = chroma.temperature(settings.colorTemperature).darken(1).alpha(0.2);
+                console.log(settings)
+                shadowDiv.style.backgroundColor = chroma.temperature(settings.overlayColorTemperature);
+                shadowDiv.style.opacity = settings.overlayAlpha;
                 e.append(shadowDiv);
             }
 

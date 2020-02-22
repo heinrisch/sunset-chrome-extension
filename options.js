@@ -9,7 +9,8 @@ function save_options_enable() {
 function save_options(enabled) {
     chrome.storage.sync.set({
         enabled: enabled,
-        colorTemperature: temperatureRange.value,
+        overlayColorTemperature: temperatureOverlayRange.value,
+        overlayAlpha: alphaOverlayRange.value,
     }, function () {
         const status = document.getElementById('status');
         status.textContent = `Saved and ${enabled ? 'enabled' : 'disabled'}. Refresh page to see changes.`;
@@ -22,24 +23,38 @@ function save_options(enabled) {
 function restore_options() {
     chrome.storage.sync.get({
         enabled: true,
-        colorTemperature: 3000,
+        overlayColorTemperature: 3000,
+        overlayAlpha: 0.5,
     }, function (items) {
-        setColorTemperature(items.colorTemperature);
+        setOverlayColorTemperature(items.overlayColorTemperature);
+        setOverlayAlpha(items.overlayAlpha)
     });
 }
+
+const colorPreview = document.getElementById('color-preview');
 
 document.addEventListener('DOMContentLoaded', restore_options);
 document.getElementById('save-and-enable').addEventListener('click', save_options_enable);
 document.getElementById('disable').addEventListener('click', save_options_disable);
-const temperatureRange = document.getElementById('temperature-range');
-const temperatureRangeLabel = document.getElementById('temperature-range-label');
-const colorPreview = document.getElementById('color-preview');
-temperatureRange.addEventListener('input', () => {
-    setColorTemperature(temperatureRange.value);
+
+// Overlay temperature
+const temperatureOverlayRange = document.getElementById('temperature-range');
+temperatureOverlayRange.addEventListener('input', () => {
+    setOverlayColorTemperature(temperatureOverlayRange.value);
 });
 
-function setColorTemperature(value) {
-    temperatureRange.value = value;
-    temperatureRangeLabel.innerText = `Overlay color temperature (${value} K)`;
+function setOverlayColorTemperature(value) {
+    temperatureOverlayRange.value = value;
     colorPreview.style.backgroundColor = chroma.temperature(value);
+}
+
+// Overlay alpha
+const alphaOverlayRange = document.getElementById('alpha-range');
+alphaOverlayRange.addEventListener('input', () => {
+    setOverlayAlpha(alphaOverlayRange.value);
+});
+
+function setOverlayAlpha(value) {
+    alphaOverlayRange.value = value;
+    colorPreview.style.opacity = value;
 }

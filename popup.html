@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EyeChill</title>
+    <title>Sunset</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
@@ -29,30 +29,43 @@
         .line {
             display: flex;
             flex-direction: row;
+            align-items: center;
         }
 
         .filler {
             flex-grow: 1;
         }
 
+        .range-label {
+            margin-right: 1rem;
+            width: 10rem;
+        }
+
     </style>
 </head>
 <body>
 <div class="wrapper">
-    <div class="col-xs-1"><h3 class="text-nowrap">EyeChill Chrome Extension</h3></div>
-    <label id="temperature-range-label" for="temperature-range">Overlay color temperature (K)</label>
-    <div class="line">
-        <input type="range" class="form-control-range" min="1000" max="5500" step="250" id="temperature-range">
-        <div class="col-xs-1" id="color-preview"></div>
-    </div>
+    <h3 class="text-nowrap">Sunset Chrome Extension</h3></div>
+<div class="line center-content">
+    <span>Overlay color: </span>
+    <div id="color-preview"></div>
+</div>
+<div class="line">
+    <label id="temperature-range-label" for="temperature-range" class="range-label">Temperature:</label>
+    <input type="range" class="form-control-range" min="1000" max="5500" step="250" id="temperature-range">
+</div>
+<div class="line">
+    <label id="alpha-range-label" for="alpha-range" class="range-label">Alpha:</label>
+    <input type="range" class="form-control-range" min="0.05" max="0.9" step="0.05" id="alpha-range">
+</div>
 
-    <div class="line">
-        <button id="disable" class="btn btn-danger">Disable</button>
-        <div class="filler"></div>
-        <button id="save-and-enable" class="btn btn-success">Save & Enable</button>
-    </div>
+<div class="line">
+    <button id="disable" class="btn btn-danger">Disable</button>
+    <div class="filler"></div>
+    <button id="save-and-enable" class="btn btn-success">Save & Enable</button>
+</div>
 
-    <div id="status"></div>
+<div id="status"></div>
 </div>
 
 <script src="lib/chroma.js"></script>

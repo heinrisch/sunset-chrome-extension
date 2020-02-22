@@ -3,7 +3,8 @@ let settings = null;
 const syncSettings = () => {
     chrome.storage.sync.get({
         enabled: true,
-        colorTemperature: 3000,
+        overlayColorTemperature: 3000,
+        overlayAlpha: 0.2,
     }, function (items) {
         console.log('Settings retrieved', items);
         settings = items;

@@ -1,7 +1,7 @@
 {
-  "name": "Own Extension",
+  "name": "Sunset",
   "version": "1.0",
-  "description": "Hax",
+  "description": "Make sites easier on you eyes.",
   "manifest_version": 2,
   "background": {
     "scripts": ["background.js"],
@@ -30,8 +30,7 @@
     "128": "images/128.png"
   },
   "permissions": [
-    "storage",
-    "<all_urls>"
+    "storage"
   ],
   "browser_action": {
     "default_popup": "popup.html",
