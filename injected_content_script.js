@@ -28,7 +28,6 @@ const handleElement = (e) => {
             if (e.tagName.toLowerCase() === 'body') {
                 const shadowDiv = document.createElement('div');
                 shadowDiv.classList.add('other-filter');
-                console.log(settings)
                 shadowDiv.style.backgroundColor = chroma.temperature(settings.overlayColorTemperature);
                 shadowDiv.style.opacity = settings.overlayAlpha;
                 e.append(shadowDiv);
